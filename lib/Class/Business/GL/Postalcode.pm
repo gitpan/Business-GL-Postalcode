@@ -15,7 +15,7 @@ use constant FALSE                       => 0;
 
 Readonly::Scalar my $SEPARATOR => ';';
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub new {
     my $class = shift;
@@ -30,7 +30,21 @@ sub new {
 
     $self->postal_data(\@postal_data);
 
+    $self->num_of_digits_in_postalcode(NUM_OF_DIGITS_IN_POSTALCODE);
+
     return $self;
+}
+
+sub num_of_digits_in_postalcode {
+    my ($self, $number) = @_;
+
+    if ($number) {
+        $self->{num_of_digits_in_postalcode} = $number;
+
+        return TRUE;
+    } else {
+        return $self->{num_of_digits_in_postalcode};
+    }
 }
 
 sub postal_data {
@@ -66,9 +80,11 @@ sub _retrieve_postalcode {
     ## no critic qw(RegularExpressions::RequireLineBoundaryMatching RegularExpressions::RequireExtendedFormatting RegularExpressions::RequireDotMatchAnything)
     my @entries = split /$SEPARATOR/x, $string, NUM_OF_DATA_ELEMENTS;
 
+    my $num_of_digits_in_postalcode = $self->num_of_digits_in_postalcode();
+
     if ($entries[0] =~ m{
         ^ #beginning of string
-        \d{${\NUM_OF_DIGITS_IN_POSTALCODE}} #digits in postalcode
+        \d{$num_of_digits_in_postalcode} #digits in postalcode
         $ #end of string
         }xsm
         )
@@ -148,7 +164,7 @@ Class::Business::GL::Postalcode - OO interface to validation and listing of Gree
 
 =head1 VERSION
 
-This documentation describes version 0.01
+This documentation describes version 0.02
 
 =head1 SYNOPSIS
 
@@ -350,6 +366,26 @@ Please note that city names are not unique, hence the possibility of a list of p
     } else {
         die "$city not found\n";
     }
+
+=head2 num_of_digits_in_postalcode
+
+Mutator to get/set the number of digits used to compose a Greenlandic postal code
+
+    my $validator = Business::GL::Postalcode->new();
+
+    my $rv = $validator->num_of_digits_in_postalcode(4);
+
+    my $digits = $validator->num_of_digits_in_postalcode();
+
+=head2 postal_data
+
+Mutator to get/set the reference to the array comprising the main data structure
+
+    my $validator = Business::GL::Postalcode->new();
+
+    my $rv = $validator->postal_data(\@postal_data);
+
+    my $postal_data = $validator->postal_data();
 
 =head1 DIAGNOSTICS
 

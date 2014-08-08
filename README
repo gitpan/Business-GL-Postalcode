@@ -3,7 +3,7 @@ NAME
     codes
 
 VERSION
-    This documentation describes version 0.01
+    This documentation describes version 0.02
 
 SYNOPSIS
         # basic validation of string
@@ -58,7 +58,7 @@ FEATURES
     *   Look up methods for Greenland postal codes for web applications and
         the like
 
-    *   The postal code from Santa Claus (father Christmas)
+    *   The postal code for Santa Claus (father Christmas)
 
 DESCRIPTION
     This distribution is not the original resource for the included data,
