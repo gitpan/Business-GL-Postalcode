@@ -44,11 +44,11 @@
    "provides" : {
       "Business::GL::Postalcode" : {
          "file" : "lib/Business/GL/Postalcode.pm",
-         "version" : "0.02"
+         "version" : "0.03"
       },
       "Class::Business::GL::Postalcode" : {
          "file" : "lib/Class/Business/GL/Postalcode.pm",
-         "version" : "0.02"
+         "version" : "0.03"
       }
    },
    "release_status" : "stable",
@@ -58,11 +58,11 @@
       },
       "homepage" : "https://github.com/jonasbn/perl-Business-GL-Postalcode",
       "license" : [
-         "http://opensource.org/licenses/artistic-license-2.0.php"
+         "http://www.perlfoundation.org/artistic_license_2_0"
       ],
       "repository" : {
          "url" : "https://github.com/jonasbn/perl-Business-GL-Postalcode"
       }
    },
-   "version" : "0.02"
+   "version" : "0.03"
 }
